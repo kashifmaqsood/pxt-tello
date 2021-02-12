@@ -65,7 +65,7 @@ namespace Tello {
 
     //% block="Set Speed to $x cm/s" color="#66CCFF"
     //% x.min=10 x.max=100 x.defl=30
-    export function fly(x: number) {
+    export function set_speed(x: number) {
         serial.writeLine("set_speed:" + x)
     }	
 	
