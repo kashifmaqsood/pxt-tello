@@ -19,11 +19,14 @@ enum TurnOptions {
     Clockwise
 }
 
-enum TelemetryOptions {
+enum DeviceTelemetryOptions {
     IP,
     SSID,
     Frequency,
-    Signal,
+    Signal    
+}
+
+enum DroneTelemetryOptions {    
     Battery,
     Temperature,
     Roll,
@@ -32,7 +35,7 @@ enum TelemetryOptions {
     Height,
     BarometerHeight,
     Speed,
-    FlightDuration	
+    FlightTime
 }
 
 //% color="#000099" weight=10 icon="\uf17b" block="Tello"
@@ -97,8 +100,8 @@ namespace Tello {
             serial.writeLine("flip_back")
     }
 	
-    //% block="Read Telemetry $choice" color="#A04000"
-    export function Telemetry(choice: TelemetryOptions) {
+    //% block="Device Telemetry $choice" color="#0000ff"
+    export function DeviceTelemetry(choice: DeviceTelemetryOptions) {
         if (choice == 0)
             serial.writeLine("telemetry:ip")
         else if (choice == 1)
@@ -106,24 +109,41 @@ namespace Tello {
         else if (choice == 2)
             serial.writeLine("telemetry:freq")
         else if (choice == 3)
-            serial.writeLine("telemetry:signal")
-	else if (choice == 4)
+            serial.writeLine("telemetry:signal")	
+
+        let d = ""
+
+        for (let i = 1; i < 40000; i++) {
+            d = serial.readLine()
+            if (d == "") {
+                control.waitMicros(50)
+            } else {
+                return d		 
+            }
+        }
+
+	return d
+    }
+	
+//% block="Drone Telemetry $choice" color="#FF0000"
+    export function DroneTelemetry(choice: DroneTelemetryOptions) {        
+	if (choice == 0)
             serial.writeLine("telemetry:battery")
-	else if (choice == 5)
+	else if (choice == 1)
             serial.writeLine("telemetry:temp")	
-	else if (choice == 6)
+	else if (choice == 2)
             serial.writeLine("telemetry:roll")
-	else if (choice == 7)
+	else if (choice == 3)
             serial.writeLine("telemetry:pitch")
-	else if (choice == 8)
+	else if (choice == 4)
             serial.writeLine("telemetry:yaw")
-	else if (choice == 9)
+	else if (choice == 5)
             serial.writeLine("telemetry:height")
-	else if (choice == 10)
+	else if (choice == 6)
             serial.writeLine("telemetry:baro_height")
-	else if (choice == 11)
+	else if (choice == 7)
             serial.writeLine("telemetry:speed")
-	else if (choice == 12)
+	else if (choice == 8)
             serial.writeLine("telemetry:flight_time")
 
         let d = ""
@@ -139,4 +159,5 @@ namespace Tello {
 
 	return d
     }
+	
 }
