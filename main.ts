@@ -63,7 +63,7 @@ namespace Tello {
 
     //% block="WiFi Connect -  SSID: $x Password: $y " color="#000099"    
     export function ConnectToWiFi(x: string, y: string) {
-        serial.writeLine("connect:" + x + ":" + y)
+        serial.writeLine("wificonnect:" + x + ":" + y)
     }
 
     //% block="Fly $choice for distance = $x cm" color="#000099"
