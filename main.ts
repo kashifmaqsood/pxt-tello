@@ -90,7 +90,7 @@ namespace Tello {
             serial.writeLine("flip_back")
     }
 	
-    //% block="Read Telemetry" color="#A04000"
+    //% block="Read Telemetry $choice" color="#A04000"
     export function Telemetry(choice: TelemetryOptions) {
         if (choice == 0)
             serial.writeLine("telemetry:ip")
