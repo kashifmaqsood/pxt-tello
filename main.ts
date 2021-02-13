@@ -25,7 +25,14 @@ enum TelemetryOptions {
     Frequency,
     Signal,
     Battery,
-    Temperature
+    Temperature,
+    Roll,
+    Pitch,
+    Yaw,
+    Height,
+    BarometerHeight,
+    Speed,
+    FlightDuration	
 }
 
 //% color="#000099" weight=10 icon="\uf17b" block="Tello"
@@ -100,25 +107,36 @@ namespace Tello {
             serial.writeLine("telemetry:freq")
         else if (choice == 3)
             serial.writeLine("telemetry:signal")
-	else if (choice == 3)
+	else if (choice == 4)
             serial.writeLine("telemetry:battery")
-	else if (choice == 3)
-            serial.writeLine("telemetry:temperature")
+	else if (choice == 5)
+            serial.writeLine("telemetry:temp")	
+	else if (choice == 6)
+            serial.writeLine("telemetry:roll")
+	else if (choice == 7)
+            serial.writeLine("telemetry:pitch")
+	else if (choice == 8)
+            serial.writeLine("telemetry:yaw")
+	else if (choice == 9)
+            serial.writeLine("telemetry:height")
+	else if (choice == 10)
+            serial.writeLine("telemetry:baro_height")
+	else if (choice == 11)
+            serial.writeLine("telemetry:speed")
+	else if (choice == 12)
+            serial.writeLine("telemetry:flight_time")
 
         let d = ""
 
-        for (let i = 1; i < 400; i++) {
+        for (let i = 1; i < 40000; i++) {
             d = serial.readLine()
             if (d == "") {
                 control.waitMicros(50)
             } else {
-                return d
-		 //return parseInt(d)
-                //return Math.idiv(parseInt(d), 38)
+                return d		 
             }
         }
-        
-	//return parseInt(d)
+
 	return d
     }
 }
