@@ -19,6 +19,15 @@ enum TurnOptions {
     Clockwise
 }
 
+enum TelemetryOptions {
+    IP,
+    SSID,
+    Frequency,
+    Signal,
+    Battery,
+    Temperature
+}
+
 //% color="#000099" weight=10 icon="\uf17b" block="Tello"
 namespace Tello {
 
@@ -79,5 +88,37 @@ namespace Tello {
             serial.writeLine("flip_forward")
         else if (choice == 3)
             serial.writeLine("flip_back")
+    }
+	
+    //% block="Object detected at (cm)" color="#A04000"
+    export function Telemetry(choice: TelemetryOptions) {
+        if (choice == 0)
+            serial.writeLine("telemetry:ip")
+        else if (choice == 1)
+            serial.writeLine("telemetry:ssid")
+        else if (choice == 2)
+            serial.writeLine("telemetry:freq")
+        else if (choice == 3)
+            serial.writeLine("telemetry:signal")
+	else if (choice == 3)
+            serial.writeLine("telemetry:battery")
+	else if (choice == 3)
+            serial.writeLine("telemetry:temperature")
+
+        let d = ""
+
+        for (let i = 1; i < 400; i++) {
+            d = serial.readLine()
+            if (d == "") {
+                control.waitMicros(50)
+            } else {
+                return d
+		 //return parseInt(d)
+                //return Math.idiv(parseInt(d), 38)
+            }
+        }
+        
+	//return parseInt(d)
+	return d
     }
 }
