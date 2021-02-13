@@ -51,9 +51,19 @@ namespace Tello {
         serial.writeLine("land")
     }
 	
-	//% block color="#006600"
+    //% block color="#006600"
     export function emergency() {
         serial.writeLine("emergency")
+    }
+
+    //% block color="#FF0000"
+    export function connect() {
+        serial.writeLine("connect")
+    }
+
+    //% block="Connect to WiFi -  SSID: $x Password: $y " color="#000099"    
+    export function fly(choice: FlyOptions, x: string, y: string) {
+        serial.writeLine("connect:" + x + ":" + y)
     }
 
     //% block="Fly $choice for distance = $x cm" color="#000099"
