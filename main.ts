@@ -38,7 +38,7 @@ enum DroneTelemetryOptions {
     FlightTime
 }
 
-//% color="#FFFFFF" weight=10 icon="\uf17b" block="Tello"
+//% color="#000099" weight=10 icon="\uf17b" block="Tello"
 namespace Tello {
 
     //% block color="#DC143C"
@@ -46,7 +46,7 @@ namespace Tello {
         serial.writeLine("takeoff")
     }
 
-    //% block color="#00FF00"
+    //% block color="#0A6E1E"
     export function land() {
         serial.writeLine("land")
     }
@@ -56,7 +56,7 @@ namespace Tello {
         serial.writeLine("emergency")
     }
 
-    //% block color="#00A4A6"
+    //% block color="#0A1E6E"
     export function connect() {
         serial.writeLine("connect")
     }
@@ -110,7 +110,7 @@ namespace Tello {
             serial.writeLine("flip_back")
     }
 	
-    //% block="Device Telemetry $choice" color="#D2D17F"
+    //% block="Device Telemetry $choice" color="#E63022"
     export function DeviceTelemetry(choice: DeviceTelemetryOptions) {
         if (choice == 0)
             serial.writeLine("telemetry:ip")
