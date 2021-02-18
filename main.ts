@@ -38,35 +38,35 @@ enum DroneTelemetryOptions {
     FlightTime
 }
 
-//% color="#000099" weight=10 icon="\uf17b" block="Tello"
+//% color="#FFFFFF" weight=10 icon="\uf17b" block="Tello"
 namespace Tello {
 
-    //% block color="#006600"
+    //% block color="#DC143C"
     export function takeoff() {
         serial.writeLine("takeoff")
     }
 
-    //% block color="#006600"
+    //% block color="#00FF00"
     export function land() {
         serial.writeLine("land")
     }
 	
-    //% block color="#006600"
+    //% block color="#FF0000"
     export function emergency() {
         serial.writeLine("emergency")
     }
 
-    //% block color="#FF0000"
+    //% block color="#00A4A6"
     export function connect() {
         serial.writeLine("connect")
     }
 
-    //% block="WiFi Connect -  SSID: $x Password: $y " color="#000099"    
+    //% block="WiFi Connect -  SSID: $x Password: $y " color="#9400D3"    
     export function ConnectToWiFi(x: string, y: string) {
         serial.writeLine("wificonnect:" + x + ":" + y)
     }
 
-    //% block="Fly $choice for distance = $x cm" color="#000099"
+    //% block="Fly $choice for distance = $x cm" color="#00A4A6"
     //% x.min=20 x.max=500 x.defl=50
     export function fly(choice: FlyOptions, x: number) {
         if (choice == 0)
@@ -83,7 +83,7 @@ namespace Tello {
             serial.writeLine("down:" + x)
     }
 
-    //% block="Turn $choice $x degrees" color="#3399FF"
+    //% block="Turn $choice $x degrees" color="#5C2D91"
     //% x.min=1 x.max=360 x.defl=90
     export function turn(choice: TurnOptions, x: number) {
         if (choice == 0)
@@ -92,13 +92,13 @@ namespace Tello {
             serial.writeLine("cw:" + x)
     }
 
-    //% block="Set Speed to $x cm/s" color="#66CCFF"
+    //% block="Set Speed to $x cm/s" color="#3455DB"
     //% x.min=10 x.max=100 x.defl=30
     export function set_speed(x: number) {
         serial.writeLine("set_speed:" + x)
     }	
 	
-    //% block="Flip $choice" color="#FF9933"
+    //% block="Flip $choice" color="#00A4A6"
     export function flip(choice: FlipOptions) {
         if (choice == 0)
             serial.writeLine("flip_left")
@@ -110,7 +110,7 @@ namespace Tello {
             serial.writeLine("flip_back")
     }
 	
-    //% block="Device Telemetry $choice" color="#0000ff"
+    //% block="Device Telemetry $choice" color="#D2D17F"
     export function DeviceTelemetry(choice: DeviceTelemetryOptions) {
         if (choice == 0)
             serial.writeLine("telemetry:ip")
@@ -135,7 +135,7 @@ namespace Tello {
 	return d
     }
 	
-//% block="Drone Telemetry $choice" color="#FF0000"
+//% block="Drone Telemetry $choice" color="#DC143C"
     export function DroneTelemetry(choice: DroneTelemetryOptions) {        
 	if (choice == 0)
             serial.writeLine("telemetry:battery")
